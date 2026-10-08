@@ -1,0 +1,76 @@
+/* Home-only cinematic sequence. Other pages retain their existing theme. */
+.home-page { --header-height: 100px; background: #f7f3ed; }
+.home-page .site-header {
+  position: fixed;
+  max-width: none;
+  padding-inline: max(24px, calc((100vw - 1104px) / 2));
+  padding-top: max(20px, env(safe-area-inset-top));
+  z-index: 50;
+  background: linear-gradient(to bottom, #140e0edb, #140e0e80 65%, #140e0e00);
+  border-bottom: 1px solid transparent;
+  transition: background 300ms, border-color 300ms, backdrop-filter 300ms;
+  text-shadow: 0 1px 5px #0009;
+}
+.home-page .site-header.header--solid,
+.home-page.menu-open .site-header {
+  background: #140e0ef5;
+  border-color: #ffffff14;
+  backdrop-filter: blur(10px);
+}
+.home-page .logo { white-space: nowrap; }
+.home-page .site-nav a { min-height: 44px; display: flex; align-items: center; }
+.home-page.menu-open { overflow: hidden; }
+.home-page .site-nav .nav-booking { display: none; }
+.home-page .site-nav { text-shadow: none; }
+.home-page:has(.cinematic-journey) { scroll-padding-top: calc(var(--header-height) + 12px); }
+html:has(.home-page) { scroll-padding-top: 112px; }
+.cinematic-journey { position: relative; height: 360svh; background: #140e0e; }
+.journey-stage { position: sticky; top: 0; height: 100svh; overflow: hidden; color: #fff; }
+.journey-poster, #journey-canvas, .journey-scrim { position: absolute; inset: 0; width: 100%; height: 100%; }
+.journey-poster { object-fit: cover; object-position: 52% center; }
+#journey-canvas { opacity: 0; }
+#journey-canvas.has-frame { opacity: 1; }
+.journey-scrim { background: linear-gradient(to top, #0c0808e6, #0c080838 48%, transparent 75%); pointer-events: none; }
+.journey-copy { position: absolute; left: max(28px, calc((100vw - 1104px) / 2)); bottom: 110px; max-width: 620px; padding-right: 25px; }
+.journey-eyebrow { color: #e8c89d; font-size: 10px; font-weight: 900; letter-spacing: 0.2em; margin-bottom: 15px; }
+.journey-copy h1 { font-size: clamp(2rem, 4.6vw, 4.2rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.04em; }
+.journey-copy > p:not(.journey-eyebrow) { margin-top: 17px; color: #e1d8cf; font-size: 14px; }
+.journey-cta { display: inline-flex; min-height: 44px; align-items: center; gap: 25px; padding: 12px 20px; margin-top: 23px; border-radius: 6px; background: #eed8b5; color: #2e2218; font-size: 12px; font-weight: 900; }
+.journey-cta[hidden], .journey-copy p[hidden] { display: none; }
+.journey-controls { position: absolute; bottom: 30px; left: max(28px, calc((100vw - 1104px) / 2)); right: max(28px, calc((100vw - 1104px) / 2)); display: flex; align-items: center; justify-content: space-between; font-size: 11px; letter-spacing: 0.04em; }
+.scroll-cue { display: flex; align-items: center; gap: 12px; }
+.scroll-cue > span { font-size: 23px; }
+.skip-journey { display: inline-flex; align-items: center; gap: 15px; min-height: 44px; padding: 0 12px; border: 1px solid #ffffff40; border-radius: 6px; background: #140e0e50; }
+.journey-progress { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: #ffffff20; }
+.journey-progress > span { display: block; height: 100%; width: 100%; background: #e6bd7d; transform: scaleX(var(--journey-progress, 0)); transform-origin: left; }
+.home-page .page-content { padding-top: 45px; }
+.home-page .booking { margin-top: 0; scroll-margin-top: 110px; }
+.home-page .surface { background: #ffffffcf; }
+.home-reveal.is-visible { animation: home-arrive 700ms ease both; }
+@keyframes home-arrive { from { opacity: 0.25; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
+.cinematic-journey.is-static { height: 100svh; }
+.cinematic-journey.is-static .journey-stage { position: relative; }
+.cinematic-journey.is-static .scroll-cue { visibility: hidden; }
+@media (max-width: 1023px) {
+  .home-page .site-nav { background: #201817; }
+  .home-page .site-nav .nav-booking { display: flex; color: #eed8b5; }
+}
+@media (max-width: 640px) {
+  .home-page { --header-height: 80px; }
+  .home-page .site-header { padding: max(16px, env(safe-area-inset-top)) 18px 16px; }
+  .home-page .logo small { font-size: 8px; }
+  .cinematic-journey { height: 280svh; }
+  .journey-copy { left: 24px; bottom: 115px; max-width: 350px; }
+  .journey-copy h1 { font-size: clamp(1.9rem, 8vw, 2.7rem); }
+  .journey-copy > p:not(.journey-eyebrow) { font-size: 12px; }
+  .journey-controls { left: 24px; right: 24px; bottom: max(25px, env(safe-area-inset-bottom)); font-size: 10px; }
+  .journey-poster { object-position: 52% center; }
+  .home-page .page-content { padding-top: 25px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-journey { height: 100svh; }
+  .journey-stage { position: relative; }
+  .home-page .site-header { transition: none; }
+  .home-reveal.is-visible { animation: none; }
+  .scroll-cue { visibility: hidden; }
+}

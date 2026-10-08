@@ -1,0 +1,4 @@
+# Only public/ is a web-accessible directory. Protect source, secrets, and data
+# when XAMPP serves this checkout under its default htdocs document root.
+Options -Indexes
+Require all denied

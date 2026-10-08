@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      Destinations — Travel Around the World
+    </title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="destinations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&family=Caveat:wght@500&display=swap" rel="stylesheet">
+  </head>
+  <body class="destinations-page">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-6">
+      <a href="index.html" class="logo flex items-center gap-2">
+        <i class="fa-solid fa-paper-plane brand-plane" aria-hidden="true"></i>
+        <span class="text-3xl tracking-wider">
+          TRAVEL
+          <small class="block text-[9px] font-extrabold tracking-normal">
+            AROUND THE WORLD
+          </small>
+        </span>
+      </a>
+      <nav id="primary-navigation" aria-label="Main navigation" class="site-nav">
+        <ul class="nav-list">
+          <li>
+            <a href="index.html">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="packages.html">
+              Packages
+            </a>
+          </li>
+          <li>
+            <a class="active" aria-current="page" href="destinations.html">
+              Destinations
+            </a>
+          </li>
+          <li>
+            <a href="bookings.html">
+              Bookings
+            </a>
+          </li>
+          <li>
+            <a href="about.html">
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="contact.html">
+              Contact
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <a href="bookings.html" class="header-booking rounded-full border border-white px-5 py-2 text-sm">
+        Book a Trip <i class="fa-solid fa-user" aria-hidden="true"></i>
+      </a>
+      <button class="menu-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">
+        <span>
+        </span>
+        <span>
+        </span>
+        <span>
+        </span>
+      </button>
+    </header>
+    <main id="main-content">
+      <section class="destination-hero" aria-labelledby="destination-title">
+        <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1">
+          <source src="gemini_generated_video_c9ca0f42.mp4" type="video/mp4">
+        </video>
+        <div class="mx-auto max-w-6xl px-6 destination-hero-content">
+          <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="index.html">Home</a></li><li><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></li><li aria-current="page">Destinations</li></ol></nav>
+          <p class="eyebrow"><i class="fa-solid fa-compass fa-spin" aria-hidden="true"></i> A world of possibilities</p>
+          <h1 id="destination-title">Find your next<br><span>great escape.</span></h1>
+          <p class="handwriting">Explore. Dream. Discover.</p>
+          <p class="hero-description">From peaceful island mornings to mountain adventures,<br class="hidden sm:block"> discover a place that feels like you.</p>
+          <a href="#explore" class="hero-explore">Explore Destinations <i class="fa-solid fa-location-dot fa-bounce" aria-hidden="true"></i></a>
+        </div>
+      </section>
+      <div class="mx-auto max-w-6xl px-5 destination-main">
+        <section id="explore" aria-labelledby="explore-title" class="surface destination-explore">
+          <div class="explore-heading"><div><p class="eyebrow">YOUR NEXT CHAPTER</p><h2 id="explore-title">Where will you go?</h2></div><p>Extraordinary places. Unforgettable memories.</p></div>
+          <form id="destination-filters" class="destination-filters" role="search" aria-label="Search destinations">
+            <label class="destination-search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><span class="sr-only">Search by destination or country</span><input id="destination-query" type="search" placeholder="Search destination or country…" autocomplete="off"></label>
+            <label class="region-select"><span class="sr-only">Filter by region</span><select id="destination-region"><option value="all">All regions</option><option>Europe</option><option>Asia</option><option>North America</option></select></label>
+            <button type="reset" class="reset-filters"><i class="fa-solid fa-arrow-rotate-left" aria-hidden="true"></i> Reset</button>
+          </form>
+          <p id="destination-count" class="result-count" role="status" aria-live="polite">4 destinations to explore</p>
+          <div class="destination-grid">
+            <article class="destination-card floating-card" data-region="Europe" data-search="greek islands santorini, greece europe">
+              <img class="destination-cover" src="assets/greece.png" alt="Santorini, Greece" loading="lazy" width="390" height="260">
+              <span class="destination-badge">Island escape</span>
+              <div class="destination-overlay">
+                <p class="overlay-region"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Europe</p>
+                <h3><a href="index.html#booking">Santorini, Greece</a></h3>
+                <p class="overlay-price">Starting from <strong>Rp 19.500.000</strong> / person</p>
+                <p class="overlay-rating"><span aria-hidden="true">★★★★★</span><span class="sr-only">Rated </span> 4.8<span class="sr-only"> out of 5</span></p>
+              </div>
+            </article>
+            <article class="destination-card floating-card" data-region="Asia" data-search="maldives paradise maldives asia">
+              <img class="destination-cover" src="assets/maldives.png" alt="Maldives" loading="lazy" width="390" height="260">
+              <span class="destination-badge">Beach favorite</span>
+              <div class="destination-overlay">
+                <p class="overlay-region"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Asia</p>
+                <h3><a href="index.html#booking">Maldives</a></h3>
+                <p class="overlay-price">Starting from <strong>Rp 24.500.000</strong> / person</p>
+                <p class="overlay-rating"><span aria-hidden="true">★★★★★</span><span class="sr-only">Rated </span> 4.9<span class="sr-only"> out of 5</span></p>
+              </div>
+            </article>
+            <article class="destination-card floating-card" data-region="North America" data-search="canadian rockies alberta, canada north america">
+              <img class="destination-cover" src="assets/canada.png" alt="Alberta, Canada" loading="lazy" width="390" height="260">
+              <span class="destination-badge">Adventure</span>
+              <div class="destination-overlay">
+                <p class="overlay-region"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> North America</p>
+                <h3><a href="index.html#booking">Alberta, Canada</a></h3>
+                <p class="overlay-price">Starting from <strong>Rp 27.500.000</strong> / person</p>
+                <p class="overlay-rating"><span aria-hidden="true">★★★★★</span><span class="sr-only">Rated </span> 4.7<span class="sr-only"> out of 5</span></p>
+              </div>
+            </article>
+            <article class="destination-card floating-card" data-region="Asia" data-search="japan discovery kyoto, japan asia">
+              <img class="destination-cover" src="assets/japan.png" alt="Kyoto, Japan" loading="lazy" width="390" height="260">
+              <span class="destination-badge">Culture & nature</span>
+              <div class="destination-overlay">
+                <p class="overlay-region"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Asia</p>
+                <h3><a href="index.html#booking">Kyoto, Japan</a></h3>
+                <p class="overlay-price">Starting from <strong>Rp 33.500.000</strong> / person</p>
+                <p class="overlay-rating"><span aria-hidden="true">★★★★★</span><span class="sr-only">Rated </span> 4.9<span class="sr-only"> out of 5</span></p>
+              </div>
+            </article>
+          </div>
+          <div id="destination-empty" class="empty-state" hidden><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i><h3>No destinations found</h3><p>Try another country, destination, or region.</p><button type="button" id="clear-filters" class="primary">Show all destinations</button></div>
+        </section>
+        <section class="weekly-deals" aria-labelledby="deals-title">
+          <div class="deals-promo floating-card">
+            <div class="promo-copy">
+              <p class="eyebrow">MAKE MEMORIES</p>
+              <h2 id="deals-title">Top Trips<br>This Week</h2>
+              <p>Your next adventure.<br>A little closer than you think.</p>
+              <a href="packages.html" class="hero-explore">Explore Trips <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+            <i class="fa-solid fa-earth-americas promo-globe" aria-hidden="true"></i>
+            <i class="fa-solid fa-plane promo-plane" aria-hidden="true"></i>
+          </div>
+          <article class="trip-deal floating-card">
+            <div class="trip-deal-photo">
+              <img src="assets/greece.png" alt="Greece Tour" loading="lazy" width="390" height="260">
+              <span class="trip-deal-badge">Best Seller</span>
+            </div>
+            <div class="trip-deal-content">
+              <h3>Greece Tour</h3>
+              <p>6 Days / 5 Nights</p>
+              <strong>Rp 19.500.000</strong><small> / person</small>
+              <a href="index.html#booking" aria-label="Book Greece Tour">View Details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+          <article class="trip-deal floating-card">
+            <div class="trip-deal-photo">
+              <img src="assets/maldives.png" alt="Maldives Escape" loading="lazy" width="390" height="260">
+              <span class="trip-deal-badge">Island Favorite</span>
+            </div>
+            <div class="trip-deal-content">
+              <h3>Maldives Escape</h3>
+              <p>5 Days / 4 Nights</p>
+              <strong>Rp 24.500.000</strong><small> / person</small>
+              <a href="index.html#booking" aria-label="Book Maldives Escape">View Details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+          <article class="trip-deal floating-card">
+            <div class="trip-deal-photo">
+              <img src="assets/japan.png" alt="Japan Discovery" loading="lazy" width="390" height="260">
+              <span class="trip-deal-badge">Discover More</span>
+            </div>
+            <div class="trip-deal-content">
+              <h3>Japan Discovery</h3>
+              <p>8 Days / 7 Nights</p>
+              <strong>Rp 33.500.000</strong><small> / person</small>
+              <a href="index.html#booking" aria-label="Book Japan Discovery">View Details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+        </section>
+        <section class="destination-reasons" aria-labelledby="reasons-title">
+          <h2 id="reasons-title" class="sr-only">A little more peace of mind</h2>
+          <article><div class="paper-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div><div><h3>Travel with confidence</h3><p>Carefully selected stays and experiences.</p></div></article>
+          <article><div class="paper-icon"><i class="fa-solid fa-heart fa-beat" aria-hidden="true"></i></div><div><h3>Made for your memories</h3><p>Thoughtful trips, from start to finish.</p></div></article>
+          <article><div class="paper-icon"><i class="fa-solid fa-headset" aria-hidden="true"></i></div><div><h3>Here whenever you need</h3><p>Friendly support throughout your journey.</p></div></article>
+        </section>
+        <section class="destination-cta" aria-labelledby="cta-title"><div><p class="eyebrow">LET’S MAKE IT HAPPEN</p><h2 id="cta-title">Your dream trip starts here.</h2><p>Choose your destination. We’ll help with the rest.</p></div><a class="hero-explore" href="index.html#booking">Plan My Trip <i class="fa-solid fa-paper-plane" aria-hidden="true"></i></a></section>
+      </div>
+    </main>
+    <footer class="site-footer py-6 text-center text-xs text-slate-500">© 2026 Travel. Around the world, with you.</footer>
+    <script src="script.js" defer></script>
+    <script src="destinations.js" defer></script>
+  </body>
+</html>

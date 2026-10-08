@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      Travel — Around the World
+    </title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="home-motion.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&family=Caveat:wght@500&display=swap" rel="stylesheet">
+  </head>
+  <body class="home-page">
+    <a class="skip-link" href="#main-content">
+      Skip to main content
+    </a>
+    <svg aria-hidden="true" class="svg-library">
+      <defs>
+        <symbol id="plane" viewBox="0 0 100 85">
+          <path fill="#fff" d="M3 32 97 3 64 80 44 54Z"/>
+          <path fill="#cfdfef" d="m44 54 53-51-40 59 7 18Z"/>
+          <path fill="#88b3d8" d="m44 54-3 20 16-12L97 3Z"/>
+          <path fill="#edf5fc" d="m3 32 94-29-65 40Z"/>
+        </symbol>
+      </defs>
+    </svg>
+    <header class="site-header mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-6">
+      <a href="#home" class="logo flex items-center gap-2">
+        <svg class="h-14 w-14">
+          <use href="#plane"/>
+        </svg>
+        <span class="text-3xl tracking-wider">
+          TRAVEL
+          <small class="block text-[9px] font-extrabold tracking-normal">
+            AROUND THE WORLD
+          </small>
+        </span>
+      </a>
+      <nav id="primary-navigation" aria-label="Main navigation" class="site-nav">
+        <ul class="nav-list">
+          <li>
+            <a class="active" href="#home">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="packages.html">
+              Packages
+            </a>
+          </li>
+          <li>
+            <a href="destinations.html">
+              Destinations
+            </a>
+          </li>
+          <li>
+            <a href="bookings.html">
+              Bookings
+            </a>
+          </li>
+          <li>
+            <a href="about.html">
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="contact.html">
+              Contact
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <a href="bookings.html" class="header-booking rounded-full border border-white px-5 py-2 text-sm">
+        Book a Trip ♙
+      </a>
+      <button class="menu-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">
+        <span>
+        </span>
+        <span>
+        </span>
+        <span>
+        </span>
+      </button>
+    </header>
+    <main id="main-content">
+      <section class="cinematic-journey" id="home" aria-labelledby="journey-title">
+        <div class="journey-stage">
+          <img class="journey-poster" src="assets/journey/ezgif-frame-001.jpg" alt="A traveler looking through an airplane window toward the sunset" fetchpriority="high" width="1920" height="1080">
+          <canvas id="journey-canvas" aria-hidden="true"></canvas>
+          <div class="journey-scrim" aria-hidden="true"></div>
+          <div class="journey-copy">
+            <p class="journey-eyebrow" id="journey-chapter">01 / THE JOURNEY BEGINS</p>
+            <h1 id="journey-title">Every journey<br>starts with a view.</h1>
+            <p id="journey-description">Extraordinary destinations. A new perspective.</p>
+            <a class="journey-cta" id="journey-cta" href="destinations.html">Explore Destinations <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="journey-controls">
+            <span class="scroll-cue"><span aria-hidden="true">↓</span> Scroll to discover</span>
+            <a href="#booking" class="skip-journey">Skip journey <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="journey-progress" aria-hidden="true"><span></span></div>
+        </div>
+      </section>
+      <div class="page-content relative mx-auto max-w-6xl px-5 pb-8">
+        <section class="booking" id="booking" aria-label="Find your next trip">
+          <div class="booking-tabs flex w-fit flex-wrap" role="group" aria-label="Travel type">
+            <button class="selected" type="button" aria-pressed="true" data-type="Flights">
+              ✈
+              <span>
+                Flights
+              </span>
+            </button>
+            <button type="button" aria-pressed="false" data-type="Hotels">
+              ▥
+              <span>
+                Hotels
+              </span>
+            </button>
+            <button type="button" aria-pressed="false" data-type="Cars">
+              ▰
+              <span>
+                Cars
+              </span>
+            </button>
+            <button type="button" aria-pressed="false" data-type="Experiences">
+              ▤
+              <span>
+                Experiences
+              </span>
+            </button>
+          </div>
+          <form id="search-form" class="booking-body grid gap-5 rounded-2xl p-7 md:grid-cols-3 lg:grid-cols-[1.2fr_1.2fr_1fr_1fr_.8fr_auto]">
+            <label>
+              <span id="from-label">
+                From
+              </span>
+              <input name="from" value="New York, USA" required>
+            </label>
+            <label>
+              <span id="to-label">
+                To
+              </span>
+              <input name="to" value="Paris, France" required>
+            </label>
+            <label>
+              <span>
+                Depart
+              </span>
+              <input name="depart" type="date" value="2026-11-12" required>
+            </label>
+            <label>
+              <span>
+                Return
+              </span>
+              <input name="return" type="date" value="2026-11-20" required>
+            </label>
+            <label>
+              <span>
+                Travelers
+              </span>
+              <select name="travelers">
+                <option>
+                  2 Adults
+                </option>
+                <option>
+                  1 Adult
+                </option>
+                <option>
+                  3 Adults
+                </option>
+                <option>
+                  4 Adults
+                </option>
+              </select>
+            </label>
+            <button class="primary self-center px-6 py-3" type="submit">
+              Search
+            </button>
+            <p id="search-status" class="hidden text-sm lg:col-span-6" role="status">
+            </p>
+          </form>
+        </section>
+        <section aria-labelledby="benefits-title" class="benefits grid grid-cols-1 gap-6 px-5 py-8 sm:grid-cols-2 lg:grid-cols-4" aria-label="Travel benefits">
+          <h2 id="benefits-title" class="sr-only">
+            Why travel with us
+          </h2>
+          <div class="benefit">
+            <div class="paper-icon" aria-hidden="true">
+              ➤
+            </div>
+            <div>
+              <h3>
+                Best Price
+                <br>
+                Guarantee
+              </h3>
+              <p>
+                Get the best deals
+                <br>
+                or we match it.
+              </p>
+            </div>
+          </div>
+          <div class="benefit">
+            <div class="paper-icon" aria-hidden="true">
+              ♢
+            </div>
+            <div>
+              <h3>
+                Secure
+                <br>
+                Booking
+              </h3>
+              <p>
+                Your data is safe
+                <br>
+                with us.
+              </p>
+            </div>
+          </div>
+          <div class="benefit">
+            <div class="paper-icon" aria-hidden="true">
+              ♧
+            </div>
+            <div>
+              <h3>
+                24/7 Customer
+                <br>
+                Support
+              </h3>
+              <p>
+                We’re here to help,
+                <br>
+                anytime.
+              </p>
+            </div>
+          </div>
+          <div class="benefit">
+            <div class="paper-icon" aria-hidden="true">
+              ▣
+            </div>
+            <div>
+              <h3>
+                Custom Travel
+                <br>
+                Packages
+              </h3>
+              <p>
+                Tailored experiences
+                <br>
+                just for you.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section id="packages" class="surface p-6">
+          <div class="mb-5 flex items-center justify-between">
+            <h2 class="section-title">
+              POPULAR PACKAGES
+            </h2>
+            <a href="#pricing" class="text-xs font-bold text-blue-700">
+              View All Packages
+              <span class="ml-2 text-lg">
+                ⊕
+              </span>
+            </a>
+          </div>
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <article class="package">
+              <img loading="lazy" src="assets/greece.png" alt="White buildings and blue domes overlooking the sea in Santorini">
+              <div class="p-4">
+                <h3>
+                  Greek Islands Escape
+                </h3>
+                <p class="details">
+                  ♦ Greece
+                  <span>
+                    ♧ 6 Days / 5 Nights
+                  </span>
+                </p>
+                <div class="package-bottom">
+                  <div>
+                    <strong>
+                      Rp 19.500.000
+                    </strong>
+                    <small>
+                      Per Person
+                    </small>
+                  </div>
+                  <span class="rating">
+                    ★
+                    <b>
+                      4.8
+                    </b>
+                  </span>
+                  <a href="#booking" aria-label="Book Greek Islands Escape" class="circle-link">
+                    ➜
+                  </a>
+                </div>
+              </div>
+            </article>
+            <article class="package">
+              <img loading="lazy" src="assets/maldives.png" alt="Overwater villas and clear turquoise water in the Maldives">
+              <div class="p-4">
+                <h3>
+                  Maldives Paradise
+                </h3>
+                <p class="details">
+                  ♦ Maldives
+                  <span>
+                    ♧ 5 Days / 4 Nights
+                  </span>
+                </p>
+                <div class="package-bottom">
+                  <div>
+                    <strong>
+                      Rp 24.500.000
+                    </strong>
+                    <small>
+                      Per Person
+                    </small>
+                  </div>
+                  <span class="rating">
+                    ★
+                    <b>
+                      4.9
+                    </b>
+                  </span>
+                  <a href="#booking" aria-label="Book Maldives Paradise" class="circle-link">
+                    ➜
+                  </a>
+                </div>
+              </div>
+            </article>
+            <article class="package">
+              <img loading="lazy" src="assets/canada.png" alt="Canoe on a turquoise lake surrounded by the Canadian Rockies">
+              <div class="p-4">
+                <h3>
+                  Canadian Rockies
+                </h3>
+                <p class="details">
+                  ♦ Canada
+                  <span>
+                    ♧ 7 Days / 6 Nights
+                  </span>
+                </p>
+                <div class="package-bottom">
+                  <div>
+                    <strong>
+                      Rp 27.500.000
+                    </strong>
+                    <small>
+                      Per Person
+                    </small>
+                  </div>
+                  <span class="rating">
+                    ★
+                    <b>
+                      4.7
+                    </b>
+                  </span>
+                  <a href="#booking" aria-label="Book Canadian Rockies" class="circle-link">
+                    ➜
+                  </a>
+                </div>
+              </div>
+            </article>
+            <article class="package">
+              <img loading="lazy" src="assets/japan.png" alt="Japanese pagoda framed by pink cherry blossoms">
+              <div class="p-4">
+                <h3>
+                  Japan Discovery
+                </h3>
+                <p class="details">
+                  ♦ Japan
+                  <span>
+                    ♧ 8 Days / 7 Nights
+                  </span>
+                </p>
+                <div class="package-bottom">
+                  <div>
+                    <strong>
+                      Rp 33.500.000
+                    </strong>
+                    <small>
+                      Per Person
+                    </small>
+                  </div>
+                  <span class="rating">
+                    ★
+                    <b>
+                      4.9
+                    </b>
+                  </span>
+                  <a href="#booking" aria-label="Book Japan Discovery" class="circle-link">
+                    ➜
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+        <section id="pricing" class="pricing mt-5 grid gap-0 p-6 lg:grid-cols-[155px_1fr]">
+          <div class="pricing-heading">
+            <h2 class="text-lg font-extrabold text-white">
+              PRICING DETAILS
+            </h2>
+            <div class="mt-3 h-px w-8 bg-white/60">
+            </div>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
+            <article class="plan">
+              <h3>
+                Economy
+              </h3>
+              <p>
+                Great value for
+                <br>
+                smart travelers
+              </p>
+              <strong>
+                Rp 7.500.000
+              </strong>
+              <small>
+                Per Person
+              </small>
+              <ul>
+                <li>
+                  Economy Class Flights
+                </li>
+                <li>
+                  20kg Baggage
+                </li>
+                <li>
+                  Standard Hotels
+                </li>
+                <li>
+                  Airport Transfers
+                </li>
+              </ul>
+              <a href="#booking">
+                Select Plan
+              </a>
+            </article>
+            <article class="plan featured">
+              <span class="popular">
+                Most Popular
+              </span>
+              <h3>
+                Premium
+              </h3>
+              <p>
+                Comfort and
+                <br>
+                convenience
+              </p>
+              <strong>
+                Rp 13.500.000
+              </strong>
+              <small>
+                Per Person
+              </small>
+              <ul>
+                <li>
+                  Premium Economy Flights
+                </li>
+                <li>
+                  25kg Baggage
+                </li>
+                <li>
+                  4-Star Hotels
+                </li>
+                <li>
+                  Airport Transfers
+                </li>
+                <li>
+                  City Tours
+                </li>
+              </ul>
+              <a href="#booking" class="primary">
+                Select Plan
+              </a>
+            </article>
+            <article class="plan">
+              <h3>
+                Business
+              </h3>
+              <p>
+                Luxury and
+                <br>
+                flexibility
+              </p>
+              <strong>
+                Rp 22.500.000
+              </strong>
+              <small>
+                Per Person
+              </small>
+              <ul>
+                <li>
+                  Business Class Flights
+                </li>
+                <li>
+                  30kg Baggage
+                </li>
+                <li>
+                  5-Star Hotels
+                </li>
+                <li>
+                  Airport Transfers
+                </li>
+                <li>
+                  City Tours
+                </li>
+                <li>
+                  Lounge Access
+                </li>
+              </ul>
+              <a href="#booking">
+                Select Plan
+              </a>
+            </article>
+            <article class="plan">
+              <h3>
+                Luxury
+              </h3>
+              <p>
+                The ultimate travel
+                <br>
+                experience
+              </p>
+              <strong>
+                Rp 37.500.000
+              </strong>
+              <small>
+                Per Person
+              </small>
+              <ul>
+                <li>
+                  First Class Flights
+                </li>
+                <li>
+                  35kg Baggage
+                </li>
+                <li>
+                  Premium Hotels/Villas
+                </li>
+                <li>
+                  Private Transfers
+                </li>
+                <li>
+                  Exclusive Experiences
+                </li>
+                <li>
+                  24/7 Concierge
+                </li>
+              </ul>
+              <a href="#booking">
+                Select Plan
+              </a>
+            </article>
+          </div>
+        </section>
+        <section class="surface mt-8 px-7 pb-8" id="how-to-book">
+          <h2 class="section-title relative -top-3 text-center">
+            HOW TO BOOK
+          </h2>
+          <div class="mx-auto mb-6 h-px w-8 bg-blue-600">
+          </div>
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="step">
+              <div class="paper-icon" aria-hidden="true">
+                ♦
+              </div>
+              <div>
+                <h3>
+                  1. Choose Destination
+                </h3>
+                <p>
+                  Pick your dream
+                  <br>
+                  destination.
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="paper-icon" aria-hidden="true">
+                ◇
+              </div>
+              <div>
+                <h3>
+                  2. Select Package
+                </h3>
+                <p>
+                  Choose the best
+                  <br>
+                  package for you.
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="paper-icon" aria-hidden="true">
+                ▱
+              </div>
+              <div>
+                <h3>
+                  3. Make Payment
+                </h3>
+                <p>
+                  Secure your booking
+                  <br>
+                  with easy payment.
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="paper-icon" aria-hidden="true">
+                ➤
+              </div>
+              <div>
+                <h3>
+                  4. Enjoy Your Trip
+                </h3>
+                <p>
+                  Pack your bags and
+                  <br>
+                  make memories!
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section aria-labelledby="about-title" id="about" class="bottom-banner mt-7 grid gap-8 p-8 text-white lg:grid-cols-[1.2fr_1fr]">
+          <h2 id="about-title" class="sr-only">
+            Our travelers and their experiences
+          </h2>
+          <div class="grid grid-cols-2 gap-6 sm:grid-cols-4">
+            <div>
+              <span>
+                ✈
+              </span>
+              <strong>
+                150+
+              </strong>
+              <small>
+                Destinations
+              </small>
+            </div>
+            <div>
+              <span>
+                ♧
+              </span>
+              <strong>
+                10K+
+              </strong>
+              <small>
+                Happy Travelers
+              </small>
+            </div>
+            <div>
+              <span>
+                ◇
+              </span>
+              <strong>
+                500+
+              </strong>
+              <small>
+                Travel Packages
+              </small>
+            </div>
+            <div>
+              <span>
+                ◷
+              </span>
+              <strong>
+                24/7
+              </strong>
+              <small>
+                Support
+              </small>
+            </div>
+          </div>
+          <blockquote class="relative pl-9 text-sm">
+            <span class="quote">
+              “
+            </span>
+            <p>
+              The best travel experience we’ve ever had!
+              <br>
+              Everything was perfectly organized.
+            </p>
+            <footer class="mt-4">
+              – Sarah J.
+              <br>
+              <span class="text-xs">
+                New York, USA
+              </span>
+              <span class="ml-5 text-amber-300">
+                ★★★★★
+              </span>
+            </footer>
+          </blockquote>
+        </section>
+      </div>
+    </main>
+    <footer class="site-footer py-6 text-center text-xs text-slate-500">
+      © 2026 Travel. Around the world, with you.
+    </footer>
+    <script src="home-motion.js" defer></script>
+    <script src="script.js" defer>
+    </script>
+  </body>
+</html>

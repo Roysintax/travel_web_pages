@@ -1,0 +1,881 @@
+/* ==========================================================================
+   FLIGHT SIMULATOR & AIR TRAFFIC RADAR (Globe 3D & 2D Tactical Radar)
+   Designed with UI/UX Pro Max Principles:
+   - Modern Dark Aeronautical Cockpit / Cyber-HUD Glassmorphism
+   - Deep Oceanic Space Canvas (#040812 to #0a1426)
+   - Luminous Cyan (#0ea5e9, #38bdf8) & Jet Amber (#f59e0b) Accents
+   - Crisp Monospaced Telemetry HUD (Share Tech Mono / Fira Code)
+   - Smooth 60fps Micro-interactions and Spring Transitions
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --sim-bg: #070d18;
+  --sim-card-bg: rgba(10, 19, 36, 0.95);
+  --sim-card-border: rgba(56, 189, 248, 0.22);
+  --sim-card-glow: rgba(14, 165, 233, 0.15);
+  --sim-primary: #0ea5e9;
+  --sim-primary-glow: #38bdf8;
+  --sim-secondary: #0284c7;
+  --sim-accent: #f59e0b;
+  --sim-danger: #f43f5e;
+  --sim-success: #10b981;
+  --sim-surface: rgba(15, 29, 54, 0.7);
+  --sim-surface-hover: rgba(22, 43, 78, 0.85);
+  --sim-text: #f0f6fc;
+  --sim-text-muted: #8b9eb3;
+  --sim-font-mono: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.flight-sim-section {
+  margin-top: 3.5rem;
+  margin-bottom: 4rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.flight-sim-card {
+  position: relative;
+  background: var(--sim-card-bg);
+  border: 1px solid var(--sim-card-border);
+  border-radius: 24px;
+  box-shadow: 0 24px 60px -12px rgba(2, 6, 23, 0.65),
+              0 0 0 1px rgba(255, 255, 255, 0.05),
+              0 0 40px -10px var(--sim-card-glow);
+  overflow: hidden;
+  color: var(--sim-text);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: border-color .3s ease, box-shadow .3s ease;
+}
+
+.flight-sim-card:hover {
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 28px 70px -12px rgba(2, 6, 23, 0.75),
+              0 0 0 1px rgba(56, 189, 248, 0.2),
+              0 0 50px -8px rgba(14, 165, 233, 0.25);
+}
+
+/* Card Header */
+.flight-sim-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 30px;
+  background: linear-gradient(180deg, rgba(16, 30, 58, 0.85), rgba(11, 20, 39, 0.95));
+  border-bottom: 1px solid rgba(56, 189, 248, 0.16);
+  position: relative;
+}
+
+.flight-sim-header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.6), transparent);
+}
+
+.flight-sim-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.flight-sim-header-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.25), rgba(3, 105, 161, 0.35));
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #38bdf8;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  box-shadow: 0 4px 16px rgba(14, 165, 233, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+.flight-sim-title-group h2 {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.flight-sim-title-group p {
+  font-size: 13px;
+  color: var(--sim-text-muted);
+  margin: 4px 0 0 0;
+  font-weight: 500;
+}
+
+.flight-sim-header-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.flight-sim-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  background: rgba(16, 185, 129, 0.12);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.2);
+}
+
+.flight-sim-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+  animation: flightPulse 2s infinite;
+}
+
+@keyframes flightPulse {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.8); }
+  70% { box-shadow: 0 0 0 9px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* View Mode Switcher: 3D Globe vs 2D Tactical Radar */
+.flight-sim-view-toggle {
+  display: inline-flex;
+  background: rgba(8, 15, 29, 0.8);
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.flight-sim-view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  color: var(--sim-text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: all .2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flight-sim-view-btn:hover {
+  color: #ffffff;
+}
+
+.flight-sim-view-btn.is-active {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.3), rgba(3, 105, 161, 0.4));
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  box-shadow: 0 2px 10px rgba(14, 165, 233, 0.25);
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+}
+
+/* Route Selectors Bar */
+.flight-sim-route-bar {
+  padding: 18px 30px;
+  background: rgba(8, 16, 32, 0.8);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.14);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.flight-sim-selectors {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+}
+
+.flight-sim-airport-select-box {
+  position: relative;
+}
+
+.flight-sim-airport-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--sim-text-muted);
+  margin-bottom: 6px;
+}
+
+.flight-sim-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.flight-sim-input-icon {
+  position: absolute;
+  left: 14px;
+  color: #38bdf8;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.flight-sim-input {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 14px 10px 40px;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 12px;
+  background: rgba(13, 25, 48, 0.7);
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  transition: all .2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flight-sim-input:focus {
+  outline: none;
+  border-color: #38bdf8;
+  background: rgba(16, 32, 60, 0.9);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.25), 0 0 16px rgba(56, 189, 248, 0.2);
+}
+
+.flight-sim-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: #0a1426;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(14, 165, 233, 0.2);
+  max-height: 260px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 6px 0;
+  margin: 0;
+  backdrop-filter: blur(16px);
+}
+
+.flight-sim-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background-color .15s, padding-left .15s;
+}
+
+.flight-sim-dropdown-item:hover,
+.flight-sim-dropdown-item.is-selected {
+  background-color: rgba(14, 165, 233, 0.2);
+  padding-left: 18px;
+}
+
+.flight-sim-dropdown-badge {
+  background: linear-gradient(135deg, #0284c7, #0ea5e9);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  min-width: 44px;
+  text-align: center;
+  letter-spacing: .05em;
+  font-family: var(--sim-font-mono);
+  box-shadow: 0 2px 6px rgba(14, 165, 233, 0.3);
+}
+
+.flight-sim-dropdown-text strong {
+  display: block;
+  font-size: 13px;
+  color: #ffffff;
+}
+
+.flight-sim-dropdown-text small {
+  font-size: 11px;
+  color: var(--sim-text-muted);
+}
+
+.flight-sim-swap-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  background: rgba(14, 28, 54, 0.85);
+  color: #38bdf8;
+  font-size: 15px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all .25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  margin-top: 18px;
+}
+
+.flight-sim-swap-btn:hover {
+  background: #0ea5e9;
+  color: #ffffff;
+  border-color: #38bdf8;
+  transform: rotate(180deg) scale(1.05);
+  box-shadow: 0 0 16px rgba(14, 165, 233, 0.5);
+}
+
+/* Quick Route Chips */
+.flight-sim-chips {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.flight-sim-chips-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--sim-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.flight-sim-chips-label i {
+  color: var(--sim-accent);
+}
+
+.flight-sim-chip {
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  background: rgba(14, 27, 51, 0.6);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #e0f2fe;
+  cursor: pointer;
+  transition: all .15s ease;
+  font-family: var(--sim-font-mono);
+}
+
+.flight-sim-chip:hover {
+  border-color: #38bdf8;
+  background: rgba(14, 165, 233, 0.25);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 10px rgba(14, 165, 233, 0.25);
+}
+
+/* Visual Canvas Stage */
+.flight-sim-stage {
+  position: relative;
+  width: 100%;
+  height: 560px;
+  background: radial-gradient(circle at 50% 50%, #08152c 0%, #040914 100%);
+  overflow: hidden;
+  user-select: none;
+}
+
+.flight-globe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.flight-globe .cesium-viewer {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.flight-globe .cesium-viewer-bottom,
+.flight-globe .cesium-widget-credits {
+  opacity: 0.4;
+  font-size: 10px;
+  transform: scale(0.8);
+  transform-origin: bottom left;
+}
+
+.flight-sim-canvas {
+    touch-action: none;
+    cursor: grab;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+  z-index: 2;
+}
+
+.flight-sim-canvas:focus-visible {
+    outline: 2px solid #38bdf8;
+    outline-offset: -4px;
+}
+
+.flight-sim-canvas.has-cesium {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.flight-sim-canvas:active {
+  cursor: grabbing;
+}
+
+/* Floating Cockpit Info Badge */
+.flight-sim-floating-card {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  z-index: 10;
+  background: rgba(8, 16, 32, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 14px;
+  padding: 14px 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 16px rgba(14, 165, 233, 0.2);
+  pointer-events: none;
+  min-width: 240px;
+}
+
+.flight-sim-flight-number {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 800;
+  color: #38bdf8;
+  font-family: var(--sim-font-mono);
+  letter-spacing: .02em;
+}
+
+.flight-sim-flight-number i {
+  color: #0ea5e9;
+  filter: drop-shadow(0 0 6px #0ea5e9);
+}
+
+.flight-sim-airline-name {
+  font-size: 11px;
+  color: var(--sim-text-muted);
+  margin-top: 3px;
+  font-weight: 500;
+}
+
+.flight-sim-airports-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(56, 189, 248, 0.2);
+  font-size: 12.5px;
+  font-weight: 700;
+  font-family: var(--sim-font-mono);
+}
+
+.flight-sim-airports-summary span {
+  color: #ffffff;
+}
+
+.flight-sim-airports-summary .text-sky-600 {
+  color: #38bdf8 !important;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Stage Navigation Controls */
+.flight-sim-canvas-overlay {
+  position: absolute;
+  bottom: 20px;
+  right: 24px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.flight-sim-canvas-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(8, 16, 32, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #e0f2fe;
+  font-size: 14px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all .15s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.flight-sim-canvas-btn:hover {
+  background: rgba(14, 165, 233, 0.35);
+  color: #ffffff;
+  border-color: #38bdf8;
+  transform: translateY(-2px);
+  box-shadow: 0 0 14px rgba(14, 165, 233, 0.4);
+}
+
+.flight-sim-canvas-hint {
+  position: absolute;
+  bottom: 20px;
+  left: 24px;
+  z-index: 10;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--sim-text-muted);
+  background: rgba(8, 16, 32, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.flight-sim-canvas-hint i {
+  color: #38bdf8;
+}
+
+/* Progress Corridor Bar */
+.flight-sim-progress-section {
+  padding: 18px 30px 14px;
+  background: rgba(9, 18, 35, 0.9);
+  border-top: 1px solid rgba(56, 189, 248, 0.16);
+}
+
+.flight-sim-progress-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.flight-sim-progress-pin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 54px;
+  flex-shrink: 0;
+}
+
+.flight-sim-progress-pin strong {
+  font-size: 14px;
+  font-weight: 800;
+  color: #38bdf8;
+  font-family: var(--sim-font-mono);
+  letter-spacing: .05em;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+}
+
+.flight-sim-progress-pin small {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--sim-text-muted);
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+.flight-sim-bar-container {
+  position: relative;
+  flex: 1;
+  height: 8px;
+  background: rgba(14, 28, 54, 0.8);
+  border-radius: 9999px;
+  overflow: visible;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.flight-sim-bar-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #0284c7, #38bdf8);
+  border-radius: 9999px;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
+  transition: width .1s linear;
+}
+
+.flight-sim-plane-marker {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  background: #0b172d;
+  border: 2px solid #38bdf8;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #38bdf8;
+  font-size: 13px;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.8);
+  transition: left .1s linear;
+}
+
+.flight-sim-progress-percent {
+  font-size: 13px;
+  font-weight: 800;
+  color: #38bdf8;
+  min-width: 48px;
+  text-align: right;
+  flex-shrink: 0;
+  font-family: var(--sim-font-mono);
+}
+
+/* Telemetry HUD Grid */
+.flight-sim-hud-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 20px 30px;
+  background: rgba(6, 13, 26, 0.95);
+  border-top: 1px solid rgba(56, 189, 248, 0.16);
+  margin: 0;
+}
+
+.flight-sim-hud-item {
+  background: rgba(13, 25, 48, 0.5);
+  border: 1px solid rgba(56, 189, 248, 0.18);
+  border-radius: 14px;
+  padding: 14px 18px;
+  transition: all .2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.flight-sim-hud-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.6), transparent);
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+
+.flight-sim-hud-item:hover {
+  background: rgba(16, 32, 60, 0.7);
+  border-color: rgba(56, 189, 248, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(14, 165, 233, 0.15);
+}
+
+.flight-sim-hud-item:hover::before {
+  opacity: 1;
+}
+
+.flight-sim-hud-item dt {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--sim-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 6px;
+}
+
+.flight-sim-hud-item dt i {
+  color: #38bdf8;
+  font-size: 12px;
+}
+
+.flight-sim-hud-item dd {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: var(--sim-font-mono);
+  letter-spacing: -.02em;
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+}
+
+.flight-sim-hud-item dd small {
+  font-size: 12px;
+  color: #38bdf8;
+  font-weight: 600;
+  text-shadow: none;
+}
+
+/* Controls Bar */
+.flight-sim-controls-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 30px;
+  background: rgba(10, 19, 36, 0.95);
+  border-top: 1px solid rgba(56, 189, 248, 0.16);
+}
+
+.flight-sim-controls-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.flight-sim-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flight-sim-btn-primary {
+  background: linear-gradient(135deg, #0284c7, #0ea5e9);
+  color: #ffffff;
+  border: 1px solid #38bdf8;
+  box-shadow: 0 4px 14px rgba(14, 165, 233, 0.35);
+}
+
+.flight-sim-btn-primary:hover {
+  background: linear-gradient(135deg, #0369a1, #0284c7);
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.6);
+  transform: translateY(-1px);
+}
+
+.flight-sim-btn-secondary {
+  background: rgba(14, 28, 54, 0.7);
+  color: #e0f2fe;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+.flight-sim-btn-secondary:hover {
+  background: rgba(20, 40, 75, 0.85);
+  border-color: #38bdf8;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.flight-sim-speed-select {
+  padding: 9px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  background: rgba(14, 28, 54, 0.85);
+  color: #e0f2fe;
+  font-size: 12.5px;
+  font-weight: 700;
+  font-family: var(--sim-font-mono);
+  cursor: pointer;
+  outline: none;
+  transition: all .2s ease;
+}
+
+.flight-sim-speed-select:focus,
+.flight-sim-speed-select:hover {
+  border-color: #38bdf8;
+  box-shadow: 0 0 12px rgba(14, 165, 233, 0.3);
+}
+
+.flight-sim-controls-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.flight-sim-toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--sim-text-muted);
+  cursor: pointer;
+  user-select: none;
+  transition: color .15s ease;
+}
+
+.flight-sim-toggle-label:hover {
+  color: #ffffff;
+}
+
+.flight-sim-toggle-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #0ea5e9;
+  cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .flight-sim-selectors {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .flight-sim-swap-btn {
+    margin: 0 auto;
+    transform: rotate(90deg);
+  }
+  .flight-sim-swap-btn:hover {
+    transform: rotate(270deg) scale(1.05);
+  }
+  .flight-sim-hud-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .flight-sim-header {
+    padding: 16px 20px;
+  }
+  .flight-sim-stage {
+    height: 420px;
+  }
+  .flight-sim-hud-grid {
+    grid-template-columns: 1fr;
+    padding: 16px 20px;
+  }
+  .flight-sim-controls-bar {
+    padding: 16px 20px;
+  }
+  .flight-sim-floating-card {
+    top: 12px;
+    left: 12px;
+    padding: 10px 14px;
+    min-width: 180px;
+  }
+}

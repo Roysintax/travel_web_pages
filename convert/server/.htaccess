@@ -1,0 +1,4 @@
+# This folder holds backend code and the secret .env file.
+# The site is also served by XAMPP Apache from htdocs, so block every request here
+# to keep the server's API key from being downloadable through Apache.
+Require all denied

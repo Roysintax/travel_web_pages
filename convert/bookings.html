@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plan your next Travel getaway, choose a destination, and review your trip estimate.">
+    <title>Bookings — Travel Around the World</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="bookings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+    <script src="booking-flow.js" defer></script>
+    <script src="bookings.js" defer></script>
+  </head>
+  <body class="bookings-page">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-6">
+      <a href="index.html" class="logo flex items-center gap-2">
+        <i class="fa-solid fa-paper-plane brand-plane" aria-hidden="true"></i>
+        <span class="text-3xl tracking-wider">
+          TRAVEL
+          <small class="block text-[9px] font-extrabold tracking-normal">
+            AROUND THE WORLD
+          </small>
+        </span>
+      </a>
+      <nav id="primary-navigation" aria-label="Main navigation" class="site-nav">
+        <ul class="nav-list">
+          <li>
+            <a href="index.html">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="packages.html">
+              Packages
+            </a>
+          </li>
+          <li>
+            <a href="destinations.html">
+              Destinations
+            </a>
+          </li>
+          <li>
+            <a class="active" aria-current="page" href="bookings.html">
+              Bookings
+            </a>
+          </li>
+          <li>
+            <a href="about.html">
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="contact.html">
+              Contact
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <a href="bookings.html" class="header-booking rounded-full border border-white px-5 py-2 text-sm">
+        Book a Trip <i class="fa-solid fa-user" aria-hidden="true"></i>
+      </a>
+      <button class="menu-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">
+        <span>
+        </span>
+        <span>
+        </span>
+        <span>
+        </span>
+      </button>
+    </header>
+    <main id="main-content">
+      <section class="booking-hero" aria-labelledby="booking-title">
+        <div class="mx-auto max-w-6xl px-6 booking-hero-inner">
+          <div><p class="booking-eyebrow">A LITTLE PLANNING. A WORLD OF POSSIBILITY.</p><h1 id="booking-title">Your next chapter<br>starts here.</h1><p>Choose your escape. Make it yours.<br>We’ll bring the details together.</p></div>
+          <div class="hero-ticket" aria-hidden="true"><i class="fa-solid fa-plane-departure"></i><span>YOUR NEXT ADVENTURE</span><strong>READY FOR TAKEOFF</strong><div class="ticket-route">YOU <span>······ ✈ ······</span> WORLD</div></div>
+        </div>
+      </section>
+      <div class="booking-container mx-auto max-w-6xl px-6">
+        <ol class="booking-steps" aria-label="Booking preview steps"><li class="current" aria-current="step"><span>1</span> Plan your trip</li><li><span>2</span> Review your details</li><li><span>3</span> Ready to explore</li></ol>
+        <div class="booking-layout">
+          <form id="trip-form" class="trip-form">
+            <section class="booking-panel" aria-labelledby="choose-title">
+              <header class="panel-heading"><span class="panel-icon"><i class="fa-solid fa-earth-americas" aria-hidden="true"></i></span><div><h2 id="choose-title">Where are we heading?</h2><p>Your dream destination is closer than you think.</p></div></header>
+              <fieldset class="destination-options"><legend class="sr-only">Choose your travel package</legend>
+                <label class="trip-option"><input type="radio" name="package" value="greece" checked><img src="assets/greece.png" alt="" width="189" height="130"><span class="option-body"><strong>Greek Islands Escape</strong><small>Greece</small><span>From Rp 19.500.000 / person</span></span><i class="fa-solid fa-circle-check" aria-hidden="true"></i></label>
+                <label class="trip-option"><input type="radio" name="package" value="maldives" ><img src="assets/maldives.png" alt="" width="189" height="130"><span class="option-body"><strong>Maldives Paradise</strong><small>Maldives</small><span>From Rp 24.500.000 / person</span></span><i class="fa-solid fa-circle-check" aria-hidden="true"></i></label>
+                <label class="trip-option"><input type="radio" name="package" value="canada" ><img src="assets/canada.png" alt="" width="189" height="130"><span class="option-body"><strong>Canadian Rockies</strong><small>Canada</small><span>From Rp 27.500.000 / person</span></span><i class="fa-solid fa-circle-check" aria-hidden="true"></i></label>
+                <label class="trip-option"><input type="radio" name="package" value="japan" ><img src="assets/japan.png" alt="" width="189" height="130"><span class="option-body"><strong>Japan Discovery</strong><small>Japan</small><span>From Rp 33.500.000 / person</span></span><i class="fa-solid fa-circle-check" aria-hidden="true"></i></label>
+              </fieldset>
+            </section>
+            <section class="booking-panel" aria-labelledby="details-title">
+              <header class="panel-heading"><span class="panel-icon"><i class="fa-regular fa-calendar-days" aria-hidden="true"></i></span><div><h2 id="details-title">Make the journey yours</h2><p>A few details to shape your getaway.</p></div></header>
+              <div class="trip-fields">
+                <label>Departure date<input id="trip-date" name="departure" type="date" required></label>
+                <label>Travelers<select id="trip-travelers" name="travelers"><option value="1">1 adult</option><option value="2" selected>2 adults</option><option value="3">3 adults</option><option value="4">4 adults</option><option value="5">5 adults</option><option value="6">6 adults</option></select></label>
+                <label class="full-field">Departing from<input id="trip-origin" name="origin" type="text" placeholder="City or airport" maxlength="100" required autocomplete="off"></label>
+              </div>
+              <p class="field-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Trip duration follows your selected package. Prices are indicative.</p>
+            </section>
+            <section class="booking-panel" aria-labelledby="traveler-title">
+              <header class="panel-heading"><span class="panel-icon"><i class="fa-regular fa-user" aria-hidden="true"></i></span><div><h2 id="traveler-title">Who’s leading the adventure?</h2><p>Details for your local trip preview.</p></div></header>
+              <div class="trip-fields">
+                <label>Full name<input id="trip-name" name="name" autocomplete="name" placeholder="Your full name" maxlength="100" required></label>
+                <label>Email address<input id="trip-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="254" required></label>
+                <label class="full-field">Anything you’d like to add? <span class="optional">(optional)</span><textarea id="trip-notes" name="notes" rows="3" maxlength="500" placeholder="A special occasion, preferred pace, or accessibility needs…"></textarea></label>
+              </div>
+            </section>
+            <div class="preview-notice"><i class="fa-solid fa-circle-info" aria-hidden="true"></i><p>This is a booking preview. No reservation, payment, or email is sent. Your draft stays in this browser tab while you move between steps. You can clear it at the final step.</p></div>
+            <p id="draft-error" class="flow-error" role="alert" hidden>Your browser blocked draft storage. Enable session storage to continue between booking pages.</p>
+            <button type="submit" class="review-button">Review My Trip <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+            <noscript><p>This interactive preview needs JavaScript. You can still explore our <a href="destinations.html">destinations</a>.</p></noscript>
+          </form>
+          <aside class="trip-summary" aria-labelledby="summary-title">
+            <div class="summary-photo"><img id="summary-image" src="assets/greece.png" alt="Greek Islands Escape" width="390" height="260"><span><i class="fa-solid fa-suitcase-rolling" aria-hidden="true"></i> YOUR GETAWAY</span></div>
+            <div class="summary-content"><p class="booking-eyebrow">GOOD TIMES AHEAD</p><h2 id="summary-title">Greek Islands Escape</h2><p id="summary-duration" class="summary-duration">6 days / 5 nights · Greece</p>
+              <dl class="summary-facts"><div><dt><i class="fa-regular fa-calendar" aria-hidden="true"></i> Departure</dt><dd id="summary-date">Choose a date</dd></div><div><dt><i class="fa-solid fa-users" aria-hidden="true"></i> Travelers</dt><dd id="summary-travelers">2 adults</dd></div><div><dt><i class="fa-solid fa-plane-departure" aria-hidden="true"></i> From</dt><dd id="summary-origin">Your departure city</dd></div></dl>
+              <div class="price-line"><span>Package / person</span><strong id="summary-unit">Rp 19.500.000</strong></div><div class="price-line total-line"><span>Estimated total<small>For all travelers</small></span><strong id="summary-total" aria-live="polite">Rp 39.000.000</strong></div>
+              <p class="summary-note">IDR · Illustrative package estimate. Availability and final pricing are not confirmed.</p>
+              <ul class="summary-inclusions"><li><i class="fa-solid fa-check" aria-hidden="true"></i> Selected accommodation</li><li><i class="fa-solid fa-check" aria-hidden="true"></i> Curated travel experiences</li><li><i class="fa-solid fa-check" aria-hidden="true"></i> A little adventure, a lot of memories</li></ul>
+              <a href="destinations.html" class="summary-link">Still exploring? View destinations <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </aside>
+        </div>
+        <section class="booking-reassurance" aria-label="Travel planning benefits"><div><i class="fa-solid fa-compass" aria-hidden="true"></i><h2>Thoughtfully curated</h2><p>Trips worth looking forward to.</p></div><div><i class="fa-solid fa-heart" aria-hidden="true"></i><h2>Made for your memories</h2><p>More moments that matter.</p></div><div><i class="fa-solid fa-mobile-screen" aria-hidden="true"></i><h2>Plan anywhere</h2><p>From your phone or desktop.</p></div></section>
+      </div>
+    </main>
+    <footer class="booking-footer"><a href="index.html"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> TRAVEL</a><p>© 2026 Travel. Around the world, with you.</p><a href="about.html">Get to know us <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></footer>
+  </body>
+</html>
