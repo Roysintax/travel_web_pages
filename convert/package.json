@@ -1,1 +1,0 @@
-{"name":"travel-site","private":true,"scripts":{"start":"node server/server.js","dev":"node --watch server/server.js","test":"node --test server/tests/*.test.js"}}
